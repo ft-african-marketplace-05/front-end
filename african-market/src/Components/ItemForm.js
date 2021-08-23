@@ -41,8 +41,8 @@ import React, { useState } from 'react'
             <div>
 
                 {           
-                    items.map((team, idx) => {
-                    return <div key={idx}>{team.name} {team.description} {team.price} {team.location}</div>
+                    items.map((item, idx) => {
+                    return <div key={idx}>{item.name} {item.description} {item.price} {item.location}</div>
                 })
                 } 
 
