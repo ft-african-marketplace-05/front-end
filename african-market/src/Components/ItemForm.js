@@ -1,22 +1,14 @@
-import React, { useState } from 'react'
+import React from 'react'
 
 
-    const itemList = [
-        { name: 'Yellow Beans', description: "Yellow Beans", price: 23.24, location: 'Location 1' },
-        { name: 'Dry Maize', description: "Cereals - Maize", price: 1.97, location: 'Location 2' },
-        { name: 'Avocado', description: "Fruits", price: 5.34, location: 'Location 3' },
-      ]
+      export default function ItemForm(props) {
+      const {   items,
+                formValues,
+                setItems,
+                setFormValues,
+                initialFormsValues
 
-      const initialFormsValues = {
-        name: '',
-        description: '',
-        price: 0,
-        location: '',
-      }
-
-      export default function ItemForm() {
-        const [items, setItems] = useState(itemList)
-        const [formValues, setFormValues] = useState(initialFormsValues)
+    } = props
 
         const change = evt => {
             const {name, value } = evt.target
@@ -37,9 +29,10 @@ import React, { useState } from 'react'
             }
 
 
+
         return (
             <div>
-
+                    <h2>Test Data:</h2>
                 {           
                     items.map((item, idx) => {
                     return <div key={idx}>{item.name} {item.description} {item.price} {item.location}</div>
@@ -93,7 +86,7 @@ import React, { useState } from 'react'
                             </label>
                         </div>
                         <div>
-                            <label>Price: 
+                            <label>Price$ 
                             {
                                 <input 
                                 name='price' 
@@ -101,17 +94,15 @@ import React, { useState } from 'react'
                                 value={formValues.price} 
                                 onChange={change}
                                 placeholder='type a price'
-                                maxLength='10' 
+                                maxLength='10'
+                                step='.01' 
                                 />
                             }
                             </label>
                         </div>
                         <button>submit</button>
                     </form>
-
-
                 </div>
-
-            </div>       
+            </div>
         )
     }
