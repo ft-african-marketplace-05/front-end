@@ -36,9 +36,8 @@ function App() {
       <ItemForm items={items} formValues={formValues} setItems={setItems} setFormValues={setFormValues} initialFormsValues={initialFormsValues}  />
       <Search setSearchTerm={setSearchTerm} />
       <ItemList items={getFilteredItems()}/>
-      
     </div>
   );
-}
+};
 
 export default App;
