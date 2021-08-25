@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import axiosWithAuth from '../utils/axiosWithAuth';
 import Item from './Item'
+import { Toast, ToastBody, ToastHeader } from 'reactstrap';
 
 const itemList = [
   { name: 'Yellow Beans', description: "Yellow Beans", price: 23.24, location: 'Location 1' },
@@ -20,10 +21,17 @@ export default function ItemList() {
   }, []);
 
   return (
-    <div>
-      { items.map(item => {
+    <div className="p-3 bg-secondary my-2 rounded">
+              <Toast>
+          <ToastHeader>
+            Inventory
+          </ToastHeader>
+          <ToastBody>
+          { items.map(item => {
           return <Item key={item.id} item={item}  />
       })}
+          </ToastBody>
+        </Toast>
     </div>
   )
 }
