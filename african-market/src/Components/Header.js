@@ -2,9 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const Header=(props)=>{
-    const { loggedIn, setLoggedIn} = props;
+    const { loggedIn } = props;
     
-
     return (
         <header>
             <h2>African Marketplace</h2>

@@ -8,6 +8,7 @@ import Header from './Components/Header';
 import Home from './Components/Home';
 import LoginForm from './Components/LoginForm';
 import SignupForm from './Components/SignupForm';
+import Logout from './Components/Logout';
 
 const defaultLoggedIn = false;
 function App() {
@@ -16,10 +17,13 @@ function App() {
   const login = () =>{
     setLoggedIn(true);
   };
+  const logout = () =>{
+    setLoggedIn(false);
+  };
 
   return (
     <div className="App">
-      <Header loggedIn={loggedIn} setLoggedIn={setLoggedIn}/>
+      <Header loggedIn={loggedIn}/>
 
       <Switch>
         <Route path='/itemform'>
@@ -37,13 +41,16 @@ function App() {
         <Route path='/itemform'>
           <ItemForm/>
         </Route>
-        {/* HOME COMPONENT GOES HERE */}
-        {/* <Route exact path='/'>
+        <Route exact path='/'>
           <Home/>
-        </Route>  */}
+        </Route> 
+        <Route path='/logout'>
+          <Logout logout={logout}/>
+        </Route>
       </Switch>
 
-      <Search />
+      {/* <Search /> */}
+      {/* move this to itemlist */}
 
     </div>
   );
