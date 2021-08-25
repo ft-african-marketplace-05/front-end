@@ -1,44 +1,55 @@
-import React, {useState} from 'react'
+import axios from 'axios';
+import React, {useState, useEffect} from 'react'
+import { useHistory } from 'react-router';
+import formSchemaLogin from '../validation/formSchemaLogin';
+import {reach} from 'yup';
 
-const initialValue = [{
+const initialFormValue = {
     username: '',
     password: ''
-}]
+};
+
+const initialDisabled = true;
 
 const LoginForm = () => {
-    const [value, setValue] = useState(initialValue);
-    const [error, setError] = useState('Please fill in Username and Password to Log in!');
+    const [formValue, setFormValue] = useState(initialFormValue);
+    const [disabled, setDisabled] = useState(initialDisabled);
+    const { push } = useHistory();
    
-    
-    const change = (event) =>{
-        setValue({ ...value, [event.target.name]: event.target.value});
-    }
+
+    const change = (evt) =>{
+        const { name, value } = evt.target;
+        setFormValue({ ...formValue, [name]:value});
+    };
 
     const submit = (event) =>  {
         event.preventDefault();
-        const loginInfo = {
-            username: value.username,
-            password: value.password
-        }
-
-        setValue([ ...value, loginInfo ])
-
-        
-    }
-
+        console.log(formValue);
+        axios.post('https://ft-african-marketplace-05-back.herokuapp.com/api/auth/login', formValue)
+        .then(res=>{
+            console.log(res)
+            localStorage.setItem("token", res.data.token)
+            push('/')
+        })
+        .catch(err=>{console.log(err)})
+    };
+    useEffect(()=>{
+        formSchemaLogin.isValid(formValue)
+        .then(valid=> setDisabled(!valid))
+    }, [formValue]);
     return (
         
         <form onSubmit = {submit}>
             <label>Login:</label>
              <br/>
-            <input type='text' name='username' placeholder='Username' onChange={change}/>
+            <input type='text' name='username' value={formValue.username} placeholder='Username' onChange={change}/>
             <br/>
-            <input type='password' name='password' placeholder='Password' onChange={change}/>
+            <input type='password' name='password' value={formValue.password} placeholder='Password' onChange={change}/>
             <br/>
-            {initialValue.username === value.username ? error : <input type='submit' value='Login'/> && initialValue.password === value.password ? error : <input type='submit' value='Login'/>}
+            <button disabled={disabled} className='submit'>Submit</button>
         </form>
         
     )
 }
 
-export default LoginForm
+export default LoginForm;

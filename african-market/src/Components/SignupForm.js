@@ -38,12 +38,7 @@ const SignupForm = () => {
 
     const submit = (event) =>  {
         event.preventDefault();
-        const loginInfo = {
-            username: formValue.username.trim(),
-            password: formValue.password.trim(),
-        };
-        console.log(loginInfo);
-        axios.post('https://ft-african-marketplace-05-back.herokuapp.com/api/auth/register', loginInfo)
+        axios.post('https://ft-african-marketplace-05-back.herokuapp.com/api/auth/register', formValue)
         .then(res=>{
             console.log(res)
             push('/login');
@@ -72,4 +67,4 @@ const SignupForm = () => {
     )
 }
 
-export default SignupForm
+export default SignupForm;
