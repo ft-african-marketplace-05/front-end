@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
 
+const initialFormValue = {username: '', email:'', password: '', confirm: ''};
+
 const SignupForm = () => {
 
-    const [initialValue, setInitialValue] = useState({username: '', email:'', password: '', confirm: ''});
+    const [initialValue, setInitialValue] = useState(initialFormValue);
     const [error, setError] = useState('');
 
     const change = (event) =>{

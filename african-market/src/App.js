@@ -9,15 +9,17 @@ import Home from './Components/Home';
 import LoginForm from './Components/LoginForm';
 import SignupForm from './Components/SignupForm';
 
-
+const defaultLoggedIn = false;
 function App() {
-  const [searchTerm, setSearchTerm] = useState('');
 
+  const [loggedIn, setLoggedIn] = useState(defaultLoggedIn);
+  const login = () =>{
+    setLoggedIn(true);
+  };
 
   return (
     <div className="App">
-       {/* HEADER GOES HERE */}
-      {/* <Header/> */}
+      <Header loggedIn={loggedIn} setLoggedIn={setLoggedIn}/>
 
       <Switch>
         <Route path='/itemform'>
@@ -27,7 +29,7 @@ function App() {
           <ItemList />
         </Route>
         <Route path='/login'>
-          <LoginForm />
+          <LoginForm login={login}/>
         </Route>
         <Route path='/signup'>
           <SignupForm/>
@@ -41,7 +43,7 @@ function App() {
         </Route>  */}
       </Switch>
 
-      <Search setSearchTerm={setSearchTerm} />
+      <Search />
 
     </div>
   );
