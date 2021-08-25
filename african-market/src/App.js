@@ -1,41 +1,48 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
+import { Route, Switch } from 'react-router-dom';
 import './App.css';
-import ItemForm from './Components/ItemForm'
+import ItemForm from './Components/ItemForm';
 import Search from './Components/Search';
-import ItemList from './Components/ItemList'
+import ItemList from './Components/ItemList';
+import Header from './Components/Header';
+import Home from './Components/Home';
+import LoginForm from './Components/LoginForm';
+import SignupForm from './Components/SignupForm';
 
-const itemList = [
-  { name: 'Yellow Beans', description: "Yellow Beans", price: 23.24, location: 'Location 1' },
-  { name: 'Dry Maize', description: "Cereals - Maize", price: 1.97, location: 'Location 2' },
-  { name: 'Avocado', description: "Fruits", price: 5.34, location: 'Location 3' },
-]
-
-const initialFormsValues = {
-  name: '',
-  description: '',
-  price: 0,
-  location: '',
-}
 
 function App() {
-  const [items, setItems] = useState(itemList)
-  const [formValues, setFormValues] = useState(initialFormsValues)
   const [searchTerm, setSearchTerm] = useState('');
 
 
-  const getFilteredItems = () => {
-    const filteredItems = items.filter(item => {
-      return item.name.toLowerCase().includes(searchTerm);
-    })
-
-    return filteredItems;
-  }
-  console.log(items)
   return (
     <div className="App">
-      <ItemForm items={items} formValues={formValues} setItems={setItems} setFormValues={setFormValues} initialFormsValues={initialFormsValues}  />
+       {/* HEADER GOES HERE */}
+      {/* <Header/> */}
+
+      <Switch>
+        <Route path='/itemform'>
+          <ItemForm />
+        </Route>
+        <Route path='/itemlist'>
+          <ItemList />
+        </Route>
+        <Route path='/login'>
+          <LoginForm />
+        </Route>
+        <Route path='/signup'>
+          <SignupForm/>
+        </Route>
+        <Route path='/itemform'>
+          <ItemForm/>
+        </Route>
+        {/* HOME COMPONENT GOES HERE */}
+        {/* <Route exact path='/'>
+          <Home/>
+        </Route>  */}
+      </Switch>
+
       <Search setSearchTerm={setSearchTerm} />
-      <ItemList items={getFilteredItems()}/>
+
     </div>
   );
 };

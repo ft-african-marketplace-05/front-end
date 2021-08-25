@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-export default function Friend(props) {
+export default function Item(props) {
     const { key, item, changeStatus } = props
 
   return (

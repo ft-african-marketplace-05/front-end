@@ -1,19 +1,22 @@
-import React from 'react'
+import React, { useState } from 'react'
+import axiosWithAuth from '../utils/axiosWithAuth';
 
 
-      export default function ItemForm(props) {
-      const {   items,
-                formValues,
-                setItems,
-                setFormValues,
-                initialFormsValues
+const initialFormsValues = {
+    name: '',
+    description: '',
+    price: 0,
+    location: '',
+  };
 
-    } = props
+      export default function ItemForm() {
+        const [formValues, setFormValues] = useState(initialFormsValues);
+
 
         const change = evt => {
             const {name, value } = evt.target
             setFormValues({ ...formValues, [name]: value })
-          }
+          };
 
           const submit = evt => {
             evt.preventDefault()
@@ -24,23 +27,18 @@ import React from 'react'
               price: formValues.price,
               location: formValues.location
             }
-              setItems([...items,  newItem])
-              setFormValues(initialFormsValues)
-            }
+                axiosWithAuth()
+                .post('/items', newItem)
+                .then(res=>{console.log(res)})
+                .catch(err=>{console.log(err)});
+              setFormValues(initialFormsValues);
+            };
 
 
 
         return (
             <div>
-                    <h2>Test Data:</h2>
-                {           
-                    items.map((item, idx) => {
-                    return <div key={idx}>{item.name} {item.description} {item.price} {item.location}</div>
-                })
-                } 
-
-
-                <div>
+               <div>
                     <h2>
                         Add an Item
                     </h2>
