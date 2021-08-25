@@ -1,40 +1,73 @@
-import React, { useState } from 'react'
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router';
+import formSchema from '../validation/formSchema';
+import { reach } from 'yup';
 
-const initialValue = [{username: '', telephone:'', password: ''}];
+const initialFormValue = {
+    username: '', 
+    password: ''
+};
+const initialError = {
+    username: '',
+    password: ''
+};
+
+// Please fill in Username, Telephone, and Password to Sign Up Now!
 
 const SignupForm = () => {
+    const [disabled, setDisabled] = useState(true)
+    const [formValue, setFormValue] = useState(initialFormValue);
+    const [error, setError] = useState(initialError);
+    const { push } = useHistory();
 
-    const [value, setValue] = useState(initialValue);
-    const [error, setError] = useState('Please fill in Username, Telephone, and Password to Sign Up Now!');
+    const validate = (name, value) =>{
+        reach(formSchema, name)
+        .validate(value)
+        .then(() => setError({
+            ...error, [name]:''}))
+        .catch(err=> setError({
+            ...error, [name]:err.errors[0]}))
+    };
 
-    const change = (event) =>{
-        setValue({ ...value, [event.target.name]: event.target.value})
-    }
+    const change = evt =>{
+        const { name, value } = evt.target
+        validate(name, value);
+        setFormValue({...formValue, [name]: value})
+    };
 
     const submit = (event) =>  {
         event.preventDefault();
         const loginInfo = {
-            username: value.username,
-            telephone: value.telephone,
-            password: value.password,
-        }
-
-        setValue([ ...value, loginInfo])
+            username: formValue.username.trim(),
+            password: formValue.password.trim(),
+        };
+        console.log(loginInfo);
+        axios.post('https://ft-african-marketplace-05-back.herokuapp.com/api/auth/register', loginInfo)
+        .then(res=>{
+            console.log(res)
+            push('/login');
+        })
+        .catch(err=>{console.log(err)});
     }
+    useEffect(()=>{
+        formSchema.isValid(formValue)
+        .then(valid=> setDisabled(!valid))
+    }, [formValue]);
 
     return (
         <form onSubmit={submit}>
             <label>Signup:</label>
             <br/>
-            <input type='text' name='username' value={initialValue.username} placeholder='Username' onChange={change}/>
+            <input type='text' name='username' value={formValue.username} placeholder='Username' onChange={change}/>
             <br/>
-            <input type='email' name='email' value={initialValue.email} placeholder='Email' onChange={change} />
+            <input type='password' name='password' value={formValue.password} placeholder='Password' onChange={change}/>
             <br/>
-            <input type='password' name='password' value={initialValue.password} placeholder='Password' onChange={change}/>
-            <br/>
-            {/* <input type='password' name='confirm' value={initialValue.confirm} placeholder='Confirm Password' onChange={change}/>
-            <br/> */}
-            {initialValue.username === value.username ? error : <input type='submit' value='Sign Up'/> && initialValue.telephone === value.telephone ? error : <input type='submit' value='Sign Up'/> && initialValue.password === value.password ? error : <input type='submit' value='Sign Up'/>}
+            <button className='submit' disabled={disabled}>Submit</button>
+            <div className='errors'>
+                <div>{error.username}</div>
+                <div>{error.password}</div>
+            </div>
         </form>
     )
 }
