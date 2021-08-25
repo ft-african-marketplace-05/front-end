@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+
 const initialValue = [{
     username: '',
     password: ''
@@ -6,7 +7,7 @@ const initialValue = [{
 
 const LoginForm = () => {
     const [value, setValue] = useState(initialValue);
-    const [error, setError] = useState('');
+    const [error, setError] = useState('Please fill in Username and Password to Log in!');
    
     
     const change = (event) =>{
@@ -31,9 +32,10 @@ const LoginForm = () => {
             <label>Login:</label>
              <br/>
             <input type='text' name='username' placeholder='Username' onChange={change}/>
+            <br/>
             <input type='password' name='password' placeholder='Password' onChange={change}/>
             <br/>
-            <input type='submit' value='Login'/>
+            {initialValue.username === value.username ? error : <input type='submit' value='Login'/> && initialValue.password === value.password ? error : <input type='submit' value='Login'/>}
         </form>
         
     )
