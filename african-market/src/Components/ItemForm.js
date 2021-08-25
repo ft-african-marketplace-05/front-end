@@ -5,7 +5,7 @@ import axiosWithAuth from '../utils/axiosWithAuth';
 const initialFormsValues = {
     name: '',
     description: '',
-    price: 0,
+    price: null,
     location: '',
   };
 
@@ -39,66 +39,68 @@ const initialFormsValues = {
         return (
             <div>
                <div>
-                    <h2>
+                    <h3>
                         Add an Item
-                    </h2>
+                    </h3>
                 </div>
-                <div>
+                <div className='.container'>
                     <form onSubmit={submit}>
-                        <div>   
-                            <label>Location:
+                        <div className='container'>   
+                            <label>
                             <select name='location' value={formValues.location} onChange={change}>
-                                <option value=''>--select a location --</option>
-                                <option value='Location_1'>Location 1</option>
-                                <option value='Location_2'>Location 2</option>
-                                <option value='Location_3'>Location 3</option>
+                                <option value=''>--Item Location --</option>
+                                <option value='Dry Goods'>Dry Goods</option>
+                                <option value='Produce'>Produce</option>
+                                <option value='Frozen'>Frozen</option>
                             </select>
                             </label>
                         </div>  
-                        <div>
-                            <label>Name: 
+                        <div className='container'>
+                            <label>
                             {
                                 <input 
                                 name='name' 
                                 type="text" 
                                 value={formValues.name} 
                                 onChange={change}
-                                placeholder='type a name'
+                                placeholder='Item Name'
                                 maxLength='30' 
                                 />
                             }
                             </label>
                         </div>
-                        <div>
-                            <label>Description: 
+                        <div className='container'>
+                            <label>
                             {
                                 <input 
                                 name='description' 
                                 type="text" 
                                 value={formValues.description} 
                                 onChange={change}
-                                placeholder='type a description'
+                                placeholder='Item Description'
                                 maxLength='50' 
                                 />
                             }
                             </label>
                         </div>
-                        <div>
-                            <label>Price$ 
+                        <div className='container'> 
+                            <label>
                             {
                                 <input 
                                 name='price' 
                                 type='number'
                                 value={formValues.price} 
                                 onChange={change}
-                                placeholder='type a price'
+                                placeholder='Unit Price'
                                 maxLength='10'
                                 step='.01' 
                                 />
                             }
                             </label>
                         </div>
-                        <button>submit</button>
+                        <div className='container'>
+                            <button>submit</button>
+                        </div>
                     </form>
                 </div>
             </div>

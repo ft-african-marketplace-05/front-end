@@ -38,6 +38,8 @@ const StyledHeaderLoggedOut = styled.header`
 display:flex;
 justify-content: space-between;
 align-items:center;
+border: 1px solid white;
+border-radius: 5px;
 
 h2 {
     padding-left: 3%;
