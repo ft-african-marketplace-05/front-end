@@ -1,27 +1,25 @@
 import React, { useState } from 'react'
 
-const initialFormValue = {username: '', email:'', password: '', confirm: ''};
+const initialValue = [{username: '', telephone:'', password: ''}];
 
 const SignupForm = () => {
 
-    const [initialValue, setInitialValue] = useState(initialFormValue);
-    const [error, setError] = useState('');
+    const [value, setValue] = useState(initialValue);
+    const [error, setError] = useState('Please fill in Username, Telephone, and Password to Sign Up Now!');
 
     const change = (event) =>{
-        setInitialValue({ ...initialValue, [event.target.name]: event.target.value})
+        setValue({ ...value, [event.target.name]: event.target.value})
     }
 
     const submit = (event) =>  {
         event.preventDefault();
         const loginInfo = {
-            username: initialValue.username,
-            email: initialValue.email,
-            password: initialValue.password,
-            confirm: initialValue.confirm
-
+            username: value.username,
+            telephone: value.telephone,
+            password: value.password,
         }
 
-        setInitialValue([ ...initialValue, loginInfo])
+        setValue([ ...value, loginInfo])
     }
 
     return (
@@ -36,7 +34,7 @@ const SignupForm = () => {
             <br/>
             {/* <input type='password' name='confirm' value={initialValue.confirm} placeholder='Confirm Password' onChange={change}/>
             <br/> */}
-            <input type='submit' value='signup'/>
+            {initialValue.username === value.username ? error : <input type='submit' value='Sign Up'/> && initialValue.telephone === value.telephone ? error : <input type='submit' value='Sign Up'/> && initialValue.password === value.password ? error : <input type='submit' value='Sign Up'/>}
         </form>
     )
 }
