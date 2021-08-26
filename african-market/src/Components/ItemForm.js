@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { useState } from 'react'
 import axiosWithAuth from '../utils/axiosWithAuth';
 import '../Components/ItemForm.css'
@@ -20,15 +21,24 @@ const initialFormsValues = {
 
           const submit = evt => {
             evt.preventDefault()
+            // const token = localStorage.getItem("authorization");
             const newItem = 
             {
               name: formValues.name.trim(),
               description: formValues.description.trim(),
               price: formValues.price,
               location: formValues.location
-            }
+            };
+            console.log(newItem);
+            // axios.post('https://ft-african-marketplace-05-back.herokuapp.com/api/items/', newItem, {headers: {
+            //     authorization: token
+            // }})
+            // .then(res=>{
+            //     console.log(res)
+            // })
+            // .catch(err=>{console.log(err)})
                 axiosWithAuth()
-                .post('/items', newItem)
+                .post('/items/', newItem)
                 .then(res=>{console.log(res)})
                 .catch(err=>{console.log(err)});
               setFormValues(initialFormsValues);
@@ -100,6 +110,7 @@ const initialFormsValues = {
                         </div>
                         <div className='container'>
                             <button className='button'>submit</button>
+
                         </div>
                     </form>
                 </div>

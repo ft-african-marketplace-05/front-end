@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import './App.css';
 import ItemForm from './Components/ItemForm';
-import Search from './Components/Search';
 import ItemList from './Components/ItemList';
 import Header from './Components/Header';
 import Home from './Components/Home';
@@ -14,13 +13,15 @@ const defaultLoggedIn = false;
 function App() {
 
   const [loggedIn, setLoggedIn] = useState(defaultLoggedIn);
-  const login = () =>{
-    setLoggedIn(true);
-  };
+
   const logout = () =>{
     setLoggedIn(false);
   };
-
+  useEffect(()=>{
+    if(localStorage.getItem("token")){
+      setLoggedIn(true)
+    };
+  }, [loggedIn])
   return (
     <div className="App">
       <Header loggedIn={loggedIn}/>
@@ -33,7 +34,7 @@ function App() {
           <ItemList />
         </Route>
         <Route path='/login'>
-          <LoginForm login={login}/>
+          <LoginForm setLoggedIn={setLoggedIn}/>
         </Route>
         <Route path='/signup'>
           <SignupForm/>

@@ -1,10 +1,13 @@
+
  .container {
     background-color: #ecb785;
+
     border: 1px solid #d2d2d2;
     box-shadow: 0px 1px 6px -2px #807f7f;
     border-radius: 8px;
     margin-top: 16px;
     padding: 16px;
+
   }
 
   .button {
@@ -16,4 +19,5 @@
     background: black;
     color: white;
     border: 5px solid gold;
+
   }
