@@ -19,37 +19,7 @@ const LoginForm = (props) => {
     const [disabled, setDisabled] = useState(initialDisabled);
     const { push } = useHistory();
 
-    const ButtonLogin = styled.button`
-        border-radius: 10px;
-        padding: 0.5rem 0;
-        margin: 20.5rem 1.rem;
-        width: 8rem;
-        font-weight: bold;
-        background: black;
-        color: white;
-        border: 5px solid gold;
-    `
-   
-
-    const DivLogin = styled.div`
-
-        background-image: url('https://i.pinimg.com/originals/d4/7e/f7/d47ef762745c4d0a0486e4badd2c1757.jpg');
-        background-position: center;
-        background-size: cover;
-        height: 80vh;
-   
-   
-
-    `   
-    const LabelLogin = styled.label`
-        font-size: 3rem;
-        color: white;
-        background-color:black;
-        border-radius: 20px;
-        font-weight: bold;
-        margin-top: 150px;
-        border: 5px solid gold;
-    `
+    
 
     const change = (evt) =>{
         const { name, value } = evt.target;
@@ -89,3 +59,30 @@ const LoginForm = (props) => {
 }
 
 export default LoginForm;
+
+const ButtonLogin = styled.button`
+    border-radius: 10px;
+    padding: 0.5rem 0;
+    margin: 20.5rem 1.rem;
+    width: 8rem;
+    font-weight: bold;
+    background: black;
+    color: white;
+    border: 5px solid gold;
+`
+const DivLogin = styled.div`
+
+    background-image: url('https://i.pinimg.com/originals/d4/7e/f7/d47ef762745c4d0a0486e4badd2c1757.jpg');
+    background-position: center;
+    background-size: cover;
+    height: 80vh;
+`   
+const LabelLogin = styled.label`
+    font-size: 3rem;
+    color: white;
+    background-color:black;
+    border-radius: 20px;
+    font-weight: bold;
+    margin-top: 150px;
+    border: 5px solid gold;
+`
