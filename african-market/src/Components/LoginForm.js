@@ -27,7 +27,7 @@ const LoginForm = (props) => {
         console.log(formValue);
         axios.post('https://ft-african-marketplace-05-back.herokuapp.com/api/auth/login', formValue)
         .then(res=>{
-            localStorage.setItem("token", res.data.token);
+            localStorage.setItem("authorization", res.data.token);
             setLoggedIn(true);
             push('/')
         })
