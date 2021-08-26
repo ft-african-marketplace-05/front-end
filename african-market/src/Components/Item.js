@@ -6,7 +6,7 @@ export default function Item(props) {
 
   return (
         <div>
-            <h3>Name: {item.name}</h3>
+            <h3>{item.name}</h3>
             <div>
                 <h5>$ { item.price } </h5>
             </div>
