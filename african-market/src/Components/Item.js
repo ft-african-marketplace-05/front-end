@@ -2,7 +2,7 @@ import React from 'react';
 
 
 export default function Item(props) {
-    const { key, item, changeStatus } = props
+    const { item } = props
 
   return (
         <div>

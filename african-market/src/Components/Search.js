@@ -32,7 +32,7 @@ export default function Search(props) {
       <button>Search</button>
     </form>
     <div>
-      {searchResult != initialSearchResult && searchResult.map(item=>{
+      {searchResult !== initialSearchResult && searchResult.map(item=>{
         return <Item key={item.id} item={item}/>
       })}
     </div>
