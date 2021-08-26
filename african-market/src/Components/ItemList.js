@@ -22,14 +22,14 @@ export default function ItemList() {
 
   return (
     <div className="p-3 bg-secondary my-2 rounded">
-              <Toast>
+        <Toast>
           <ToastHeader>
             Inventory
           </ToastHeader>
           <ToastBody>
-          { items.map(item => {
-          return <Item key={item.id} item={item}  />
-      })}
+            { items.map(item => {
+            return <Item key={item.id} item={item}  />
+            })}
           </ToastBody>
         </Toast>
     </div>

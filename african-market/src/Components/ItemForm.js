@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import axiosWithAuth from '../utils/axiosWithAuth';
-
+import '../Components/ItemForm.css'
 
 const initialFormsValues = {
     name: '',
@@ -99,7 +99,7 @@ const initialFormsValues = {
                             </label>
                         </div>
                         <div className='container'>
-                            <button>submit</button>
+                            <button className='button'>submit</button>
                         </div>
                     </form>
                 </div>
