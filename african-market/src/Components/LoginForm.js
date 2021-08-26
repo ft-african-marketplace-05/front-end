@@ -10,7 +10,8 @@ const initialFormValue = {
 
 const initialDisabled = true;
 
-const LoginForm = () => {
+const LoginForm = (props) => {
+    const { setLoggedIn } = props;
     const [formValue, setFormValue] = useState(initialFormValue);
     const [disabled, setDisabled] = useState(initialDisabled);
     const { push } = useHistory();
@@ -26,8 +27,8 @@ const LoginForm = () => {
         console.log(formValue);
         axios.post('https://ft-african-marketplace-05-back.herokuapp.com/api/auth/login', formValue)
         .then(res=>{
-            console.log(res)
-            localStorage.setItem("token", res.data.token)
+            localStorage.setItem("token", res.data.token);
+            setLoggedIn(true);
             push('/')
         })
         .catch(err=>{console.log(err)})

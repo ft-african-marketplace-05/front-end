@@ -13,7 +13,7 @@ export default function ItemList() {
   const [items, setItems] = useState(itemList)
   useEffect(()=>{
     axiosWithAuth()
-    .get('/items')
+    .get('/items/')
     .then(res=>{
       setItems(res.data)
     console.log(res.data)})
