@@ -1,19 +1,22 @@
 import React from 'react';
 import styled from 'styled-components'
+
+const DivHome = styled.div`
+    background-image: url('https://grain.org/media/W1siZiIsIjIwMTgvMTEvMDgvMDZfMzNfMDVfNjU4X1llZWJvX01hcmtldF8wMS5qcGciXSxbInAiLCJ0aHVtYiIsIjgwMHgiXV0');
+    background-position: center;
+    height: 90vh;
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: white;
+    `
+
+const Mission = styled.label`
+    padding-top: 20%;
+    `
+
 const Home=()=>{
 
-    const DivHome = styled.div`
-        background-image: url('https://grain.org/media/W1siZiIsIjIwMTgvMTEvMDgvMDZfMzNfMDVfNjU4X1llZWJvX01hcmtldF8wMS5qcGciXSxbInAiLCJ0aHVtYiIsIjgwMHgiXV0');
-        background-position: center;
-        height: 90vh;
-        background-repeat: no-repeat;
-        background-size: cover;
-        color: white;
-    `
-
-    const Mission = styled.label`
-        padding-top: 20%;
-    `
+    
 
     return(
         <div className='home'>
