@@ -18,7 +18,7 @@ function App() {
     setLoggedIn(false);
   };
   useEffect(()=>{
-    if(localStorage.getItem("token")){
+    if(localStorage.getItem("authorization")){
       setLoggedIn(true)
     };
   }, [loggedIn])
